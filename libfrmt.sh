@@ -69,7 +69,7 @@ frmt() {
 		[t_line_item]='%s\t'
 		[t_line_end]='\n'
 		[t_end]=' \n'
-		[pre]='  %s'
+		[pre]='  %s\n'
 	)
 
 	_frmt_err() {
