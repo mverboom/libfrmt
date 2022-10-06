@@ -35,7 +35,7 @@ frmt() {
 		[t_line_item]='| %s '
 		[t_line_end]='|\n'
 		[t_end]=' '
-		[pre]='  %s'
+		[pre]='  %s\n'
 	)
 
 	declare -A _mediawiki=(
