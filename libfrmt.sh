@@ -39,8 +39,8 @@ frmt() {
 	)
 
 	declare -A _mediawiki=(
-		[foldstart]='<div class="toccolours mw-collapsible mw-collapsed">%s<div class="mw-collapsible-content">'
-		[foldend]='</div></div>'
+		[foldstart]='<div class="toccolours mw-collapsible mw-collapsed">%s<div class="mw-collapsible-content">\n'
+		[foldend]='</div></div>\n'
 		[h1]='= %s =\n'
 		[h2]="== %s ==\n"
 		[h3]="=== %s ===\n"
@@ -51,8 +51,8 @@ frmt() {
 		[t_line_start]='|-\n'
 		[t_line_item]='| %s\n'
 		[t_line_end]=' '
-		[t_end]='|}'
-		[pre]=' %s'
+		[t_end]='|}\n'
+		[pre]=' %s\n'
 	)
 
 	declare -A _ascii=(
