@@ -84,12 +84,20 @@ frmt() {
       [pre]='  %s\n'
    )
 
+   _frmt_out() {
+      if test "$_FRMTOUTPUT" = "/dev/stdout"; then
+         cat
+      else
+         cat >> "$_FRMTOUTPUT"
+      fi
+   }
+
    _frmt_err() {
-      printf -- "${instance}: %s\n" "${@}" > /dev/stderr
+      ( >%2 printf -- "${instance}: %s\n" "${@}" ) > /dev/null
    }
 
    _frmt_print() {
-      printf -- "${@}" >> $_FRMTOUTPUT
+      printf -- "${@}" | _frmt_out
    }
 
    if test "$instance" = "frmt"; then
@@ -139,11 +147,11 @@ frmt() {
          _frmt_print "${_FRMT[$action]}" "${@}"
          ;;
       t_head|t_line)
-         printf "${_FRMT[${action}_start]}" >> $_FRMTOUTPUT
+         printf "${_FRMT[${action}_start]}" | _frmt_out
          for item in "${@}"; do
-            printf "${_FRMT[${action}_item]}" "$item" >> $_FRMTOUTPUT
+            printf "${_FRMT[${action}_item]}" "$item" | _frmt_out
          done
-         printf "${_FRMT[${action}_end]}" >> $_FRMTOUTPUT
+         printf "${_FRMT[${action}_end]}" | _frmt_out
          ;;
       t_end) _frmt_print "${_FRMT[t_end]}" ;;
       "del")
